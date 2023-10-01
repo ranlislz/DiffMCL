@@ -511,8 +511,8 @@ class DiffMCL:
                             emb_aug_list):
 
                         loss_joi_aug = self.criterion_cl(joint_emb_aug, self.train_ill[si:si + bsize]) \
-                                       + 0.001 * self.criterion_cl(topo_emb_aug, self.train_ill[si:si + bsize]) \
-                                       + 0.001*self.criterion_cl(sema_emb_aug, self.train_ill[si:si + bsize]) \
+                                       + scale * self.criterion_cl(topo_emb_aug, self.train_ill[si:si + bsize]) \
+                                       + scale*self.criterion_cl(sema_emb_aug, self.train_ill[si:si + bsize]) \
 
                             #loss_joi_aug =  self.criterion_cl(sema_emb_aug, self.train_ill[si:si + bsize]) \
                          #               + self.criterion_cl(topo_emb_aug, self.train_ill[si:si + bsize])
@@ -533,7 +533,7 @@ class DiffMCL:
                             losses.append((loss_joi_aug + in_loss_aug))
                         elif i == 0:
 
-                            losses.append((loss_joi_aug + in_loss_aug + loss_diff)*0.001)
+                            losses.append((loss_joi_aug + in_loss_aug + loss_diff)*scale)
                         elif i == 1:
 
                             losses.append((loss_joi_aug + in_loss_aug))
